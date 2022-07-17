@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+  ecommerce:
+    volumes:
+      - ./:/code
+    depends_on:
+      - db
+    command: ["python", "rubberduck_store/manage.py", "runserver", "0.0.0.0:8000"]
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - backend_network

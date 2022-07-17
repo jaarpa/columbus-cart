@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+  ecommerce:
+    networks:
+      - nginx_network
+      - backend_network
+    depends_on:
+      - db
+    command: python project/manage.py runserver 0.0.0.0:8000
+    command: ["/mprod/scripts/entrypoint.sh"]
+
+volumes: 
+    db_volume:

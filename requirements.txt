@@ -1,0 +1,5 @@
+django[argon2]
+djangorestframework
+cryptography
+djangorestframework-jwt
+psycopg2

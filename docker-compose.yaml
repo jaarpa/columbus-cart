@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14
+    networks:
+      - backend_network
+    env_file: .env
+  ecommerce:
+    build: .
+    image: rubberducks:latest
+    networks:
+      - nginx_network
+      - backend_network
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    env_file: .env
+
+networks:
+    nginx_network:
+    backend_network:
