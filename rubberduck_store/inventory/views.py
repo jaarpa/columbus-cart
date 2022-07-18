@@ -1,28 +1,37 @@
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework import filters
 
 from inventory.models import Product
-from inventory.serializers import ProductSerializer
+from inventory.serializers import ProductSerializer, ProductSellerSerializer
+from inventory.pagination import StandardResultsSetPagination
 
 # Create your views here.
 
 
-from rest_framework import pagination
-
-
-class CustomPageNumberPagination(pagination.PageNumberPagination):
-    """Custom page number pagination. Allows for custom page size."""
-
-    page_size = 10
-    max_page_size = 30
-    page_size_query_param = "page_size"
-
-
 class ProductsViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows products to be viewed or edited.
+    API endpoint that allows products to be viewed or edited depends on user permissions.
     """
 
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
     queryset = Product.objects.filter(available=True)
-    serializer_class = ProductSerializer
-    pagination_class = CustomPageNumberPagination
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name", "description"]
+
+    def get_serializer_class(self):
+        if self.request.user.groups.filter(name="Sellers").exists():
+            return ProductSellerSerializer
+        return ProductSerializer
+
+    def get_queryset(self):
+        products = Product.objects.filter(available=True)
+        if self.request.user.groups.filter(name="Sellers").exists():
+            products |= Product.objects.filter(
+                seller=self.request.user, available=False
+            )
+        return products
+
+    def perform_create(self, serializer):
+        return serializer.save(seller=self.request.user)

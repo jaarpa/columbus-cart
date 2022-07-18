@@ -1,5 +1,6 @@
 django[argon2]
 djangorestframework
+django-filter
 cryptography
 djangorestframework-simplejwt[crypto]
 psycopg2

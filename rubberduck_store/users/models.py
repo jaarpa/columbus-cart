@@ -15,14 +15,14 @@ class Profile(models.Model):
     age = models.PositiveIntegerField(_("Age"))
     MALE = "Male"
     FEMALE = "Female"
-    OTHER_gender = "Non-binary"
-    genderS = [
+    OTHER_GENDER = "Non-binary"
+    GENDERS = [
         (MALE, _("Male")),
         (FEMALE, _("Female")),
-        (OTHER_gender, _("Non-binary")),
+        (OTHER_GENDER, _("Non-binary")),
     ]
     gender = models.CharField(
-        max_length=10, choices=genderS, null=False, blank=False
+        max_length=10, choices=GENDERS, null=False, blank=False
     )
     phone = models.CharField(
         _("Phone number"),
@@ -31,7 +31,6 @@ class Profile(models.Model):
         null=False,
         blank=False,
     )
-    seller = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _("Profile")
@@ -42,3 +41,6 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse("profile", kwargs={"pk": self.pk})
+
+    def seller(self):
+        return self.user.groups.filter(name="Seller").exists()

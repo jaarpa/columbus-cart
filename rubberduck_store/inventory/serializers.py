@@ -1,9 +1,15 @@
 from rest_framework import serializers
 
-from inventory.models import Product
+from inventory.models import Product, ProductImage
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ("image",)
+
+
+class ProductSellerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
@@ -15,4 +21,27 @@ class ProductSerializer(serializers.ModelSerializer):
             "seller_price",
             "productimage_set",
         ]
-        read_only_fields = ["productimage_set"]
+        read_only_fields = ["available"]
+        extra_kwargs = {
+            "seller": {"required": False},
+            "productimage_set": {"required": False},
+        }
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            "name",
+            "seller",
+            "description",
+            "price",
+            "productimage_set",
+        ]
+        read_only_fields = [
+            "name",
+            "seller",
+            "description",
+            "price",
+            "productimage_set",
+        ]

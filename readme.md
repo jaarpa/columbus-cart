@@ -1,9 +1,7 @@
 # Title: Rubberduck groceries store (MVP)
 ---
 ## Overview
-This will be a customer to customer (c2c) e-commerce of groceries products.
-Not that it makes too much sense to sell groceries in this way but it was
-simpler to start up with fake data.
+This will be a customer to customer (c2c) e-commerce of pets.
 
 Mainly focused in the cart part and users creation. It also contains the
 inventory managment.

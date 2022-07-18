@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
 
@@ -9,6 +10,8 @@ from users.models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    seller = serializers.BooleanField(default=False)
+
     class Meta:
         model = Profile
         fields = ("age", "gender", "phone", "seller")
@@ -60,6 +63,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password"])
         user.save()
         profile_data = validated_data.pop("profile")
+
+        if profile_data.pop("seller"):
+            Group.objects.get(name="Sellers").user_set.add(user)
         Profile.objects.create(user=user, **profile_data)
 
         return user
