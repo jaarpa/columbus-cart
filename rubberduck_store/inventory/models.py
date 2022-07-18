@@ -6,6 +6,24 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 
 
+class JournalEntry(models.Model):
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        verbose_name = _("Journal Entry")
+        verbose_name_plural = _("Entry")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("journalentry_detail", kwargs={"pk": self.pk})
+
+
 class Product(models.Model):
 
     name = models.CharField(max_length=100)
@@ -25,6 +43,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product", kwargs={"pk": self.pk})
+
+    def get_stock(self):
+        return JournalEntry.objects.filter(product=self).aggregate(
+            models.Sum("quantity")
+        )["quantity__sum"]
 
 
 class ProductImage(models.Model):

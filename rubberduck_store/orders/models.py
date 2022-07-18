@@ -28,15 +28,20 @@ class Order(models.Model):
 class OrderItem(models.Model):
 
     order = models.ForeignKey("orders.Order", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE)
+    journal_entry = models.ForeignKey(
+        "inventory.JournalEntry", on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = _("Order Item")
         verbose_name_plural = _("Order Items")
 
     def __str__(self):
-        return f"{self.order.client.username} ordered {self.quantity} x {self.product.name}"
+        return "{} ordered {} x {}".format(
+            self.order.client.username,
+            self.journal_entry.quantity,
+            self.journal_entry.product.name,
+        )
 
     def get_absolute_url(self):
         return reverse("order_item", kwargs={"pk": self.pk})
