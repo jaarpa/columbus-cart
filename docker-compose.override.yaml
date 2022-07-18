@@ -6,7 +6,7 @@ services:
       - ./data/db:/var/lib/postgresql/data
   ecommerce:
     volumes:
-      - ./:/code
+      - ./rubberduck_store/:/ecommerce/rubberduck_store
     depends_on:
       - db
     command: ["python", "rubberduck_store/manage.py", "runserver", "0.0.0.0:8000"]

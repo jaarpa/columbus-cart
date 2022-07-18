@@ -1,5 +1,6 @@
 django[argon2]
 djangorestframework
 cryptography
-djangorestframework-jwt
+djangorestframework-simplejwt[crypto]
 psycopg2
+Pillow

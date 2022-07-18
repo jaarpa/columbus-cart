@@ -32,7 +32,7 @@ ALLOWED_HOSTS: List[str] = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+THIRDPARTY_APPS = ["rest_framework"]
+CUSTOM_APPS = ["users", "inventory", "carts", "orders"]
+
+INSTALLED_APPS = DJANGO_APPS + THIRDPARTY_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -145,3 +149,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ["DUCKS_EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["DUCKS_EMAIL_HOST_PASSWORD"]
 DEFAULT_FROM_EMAIL = os.environ["DUCKS_DEFAULT_FROM_EMAIL"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "PAGE_SIZE_QUERY_PARAM": "page_size",
+    "MAX_PAGE_SIZE": 30,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}

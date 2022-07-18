@@ -1,1 +1,5 @@
 data/
+rubberduck_store/users/fixtures/users_psw.json
+__pycache__/
+test_app/
+.venv/
