@@ -1,3 +1,5 @@
+import uuid
+from decimal import Decimal
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -26,6 +28,7 @@ class JournalEntry(models.Model):
 
 class Product(models.Model):
 
+    barcode = models.UUIDField(default=uuid.uuid4, unique=True)
     name = models.CharField(max_length=100)
     seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     description = models.TextField()
@@ -44,10 +47,11 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("product", kwargs={"pk": self.pk})
 
-    def get_stock(self):
+    @property
+    def stock(self) -> Decimal:
         return JournalEntry.objects.filter(product=self).aggregate(
             models.Sum("quantity")
-        )["quantity__sum"]
+        )["quantity__sum"] or Decimal("0.00")
 
 
 class ProductImage(models.Model):

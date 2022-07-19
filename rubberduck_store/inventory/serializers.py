@@ -10,6 +10,10 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 
 class ProductSellerSerializer(serializers.ModelSerializer):
+    stock = serializers.DecimalField(
+        read_only=True, max_digits=8, decimal_places=2
+    )
+
     class Meta:
         model = Product
         fields = [
@@ -21,6 +25,7 @@ class ProductSellerSerializer(serializers.ModelSerializer):
             "price",
             "seller_price",
             "productimage_set",
+            "stock",
         ]
         read_only_fields = ["available"]
         extra_kwargs = {
@@ -30,6 +35,10 @@ class ProductSellerSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    stock = serializers.DecimalField(
+        read_only=True, max_digits=8, decimal_places=2
+    )
+
     class Meta:
         model = Product
         fields = [
@@ -39,6 +48,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "description",
             "price",
             "productimage_set",
+            "stock",
         ]
         read_only_fields = [
             "name",

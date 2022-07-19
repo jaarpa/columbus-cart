@@ -1,6 +1,8 @@
+from itertools import product
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import filters
+from rest_framework.decorators import action
 from rest_framework import generics
 
 from core.permissions import IsOwnerOrReadOnly
@@ -27,7 +29,7 @@ class ProductsViewSet(viewsets.ModelViewSet):
     search_fields = ["name", "description"]
 
     def get_serializer_class(self):
-        buyer_serializer = super().get_queryset()
+        buyer_serializer = super().get_serializer_class()
         if self.request.user.groups.filter(name="Sellers").exists():
             return ProductSellerSerializer
         return buyer_serializer
@@ -42,3 +44,22 @@ class ProductsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(seller=self.request.user)
+
+    @action(methods=["post"], detail=True)
+    def add_stock(self, request, pk=None, *args, **kwargs):
+        product = self.get_object()
+        print(request.data)
+
+    # @action(methods=['post'], detail=True)
+    # def create_materials(self, request, pk=None, *args, **kwargs):
+    #     course = self.get_object()
+    #     materials = request.data
+    # materials = request.data
+    # for material in materials:
+    #     serializer = MaterialSerializer(
+    #         data=material, context={'course': course}
+    #     )
+    #     serializer.is_valid(raise_exception=True)
+    #     m = serializer.save()
+    #     m.course = course
+    #     m.save()
