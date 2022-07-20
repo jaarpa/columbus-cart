@@ -11,7 +11,7 @@ class Command(BaseCommand):
             if not JournalEntry.objects.filter(product=product).exists():
                 journal_entries.append(
                     JournalEntry(
-                        user=product.seller,
+                        owner=product.owner,
                         product=product,
                         quantity=len(product.name),
                     )

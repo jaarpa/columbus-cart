@@ -53,7 +53,7 @@ ecoommerce are not implemented. A few of them are
 - [ ] Out of stock alerts are not implemented
 - [ ] A real payment API like stripe is not consumed.
 - [ ] Recomendations of products to the user.
-- [ ] Order cancellarion.
+- [ ] Order cancellation.
 
 ## Arquitecture (To be Updated)
 
@@ -96,13 +96,14 @@ Ej.
    initially available.
 - [ ] Unit tests
 
-<!--
----
-## Costo
-Descripción/Análisis de costos
-Ejemplo:
-"Considerando N usuarios diarios, M llamadas a X servicio/baseDatos/etc"
-* 1000 llamadas diarias a serverless functions. $XX.XX
-* 1000 read/write units diarias a X Database on-demand. $XX.XX
-Total: $xx.xx (al mes/dia/año)
--->
+## Instructions
+
+Assuming internet connection a docker installed
+
+1. Run  `docker-compose up --build -d` in the terminal
+2. Enter to the container with `docker exec -it ecommerce-ecommerce-1 bash`
+3. Move to the django app folder `cd rubberduck_store/`
+4. Populate the db with initial data using `python manage.py migrate && python manage.py loaddata auth products`
+5. Create registers for the initial product stock with `python manage.py intialexistences`
+
+Now it is ready to test
