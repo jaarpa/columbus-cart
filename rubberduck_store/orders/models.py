@@ -38,7 +38,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return "{} ordered {} x {}".format(
-            self.order.client.username,
+            self.order.owner.username,
             self.journal_entry.quantity,
             self.journal_entry.product.name,
         )

@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 class CartItem(models.Model):
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.DecimalField(default=1, max_digits=9, decimal_places=2)
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
