@@ -20,7 +20,7 @@ class JournalEntry(models.Model):
         verbose_name_plural = _("Entry")
 
     def __str__(self):
-        return self.name
+        return f"{self.quantity} {self.product.name}"
 
     def get_absolute_url(self):
         return reverse("journalentry_detail", kwargs={"pk": self.pk})

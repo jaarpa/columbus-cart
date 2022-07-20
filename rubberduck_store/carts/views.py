@@ -36,8 +36,17 @@ class CartViewSet(viewsets.ModelViewSet):
                 {"pay": "No items in cart"},
                 status=status.HTTP_404_NOT_FOUND,
             )
-        # Check that items are still available
 
+        # Check that items are still available
+        unavailable_items = []
+        for item in cartitems:
+            if item.product.stock < item.quantity:
+                unavailable_items.append(item)
+        if unavailable_items:
+            return Response(
+                self.get_serializer(unavailable_items, many=True).data,
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         # Create order
         order = Order(owner=request.user)
         order.save()
@@ -48,7 +57,7 @@ class CartViewSet(viewsets.ModelViewSet):
                 JournalEntry(
                     owner=request.user,
                     product=item.product,
-                    quantity=item.quantity,
+                    quantity=-item.quantity,
                 )
                 for item in cartitems
             ]

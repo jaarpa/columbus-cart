@@ -19,15 +19,17 @@ from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 from inventory import views as inventory_views
 from carts import views as carts_views
+from orders import views as orders_views
 
 router = routers.DefaultRouter()
 router.register(r"products", inventory_views.ProductsViewSet)
 router.register(r"cart", carts_views.CartViewSet, basename="cart")
+router.register(r"orders", orders_views.OrderViewset, basename="order")
+router.register(r"sales", orders_views.SalesViewset, basename="sales")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("users.urls")),
-    path("api/inventory/", include(router.urls)),
     path("api/", include(router.urls)),
     path(
         "openapi/",

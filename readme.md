@@ -40,9 +40,8 @@ user wont be returned by the API.
 - [x] A regular user and a seller user can add, modify and delete products
 of his/her cart.
 - [x] The user cannot add more items to the cart than what is available.
-- [ ] The user cannot set the quantity of a product in the cart to 0 or less.
-If user attempts to do this the item is deleted from the cart.
-- [ ] A seller user can see a register of all the completed purchases of his/her
+- [x] The user cannot set the quantity of a product in the cart to 0 or less.
+- [x] A seller user can see a register of all the completed purchases of his/her
 products.
 
 #### Out of Scope
@@ -52,10 +51,9 @@ ecoommerce are not implemented. A few of them are
 
 - [ ] Track of orders is not implemented
 - [ ] Out of stock alerts are not implemented
-- [ ] A real payment API is not consumed. Options are stripe.
+- [ ] A real payment API like stripe is not consumed.
 - [ ] Recomendations of products to the user.
-
----
+- [ ] Order cancellarion.
 
 ## Arquitecture (To be Updated)
 

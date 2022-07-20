@@ -45,3 +45,11 @@ class OrderItem(models.Model):
 
     def get_absolute_url(self):
         return reverse("order_item", kwargs={"pk": self.pk})
+
+    @property
+    def product(self):
+        return self.journal_entry.product
+
+    @property
+    def quantity(self):
+        return self.journal_entry.quantity

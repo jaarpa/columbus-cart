@@ -15,3 +15,8 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Instance must have an attribute named `owner`.
         return obj.owner == request.user
+
+
+class IsSeller(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.groups.filter(name="Sellers").exists()
