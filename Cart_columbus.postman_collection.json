@@ -1,0 +1,2337 @@
+{
+	"info": {
+		"_postman_id": "71f84401-53ac-4ccb-aa57-cabe311389bc",
+		"name": "Cart columbus",
+		"description": "These are some request to the API built as the selection process in Columbus. This API is an MVP of an E-commerce that sells pets and mainly handles the inventory and user cart.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22008772"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"username\": \"usuarionuevo\",\r\n        \"first_name\": \"Jamal\",\r\n        \"last_name\": \"Dugald\",\r\n        \"password\": \"EEUvL79hpOs\",\r\n        \"password2\": \"EEUvL79hpOs\",\r\n        \"email\": \"mimail@wiley.com\",\r\n        \"profile\": {\r\n            \"gender\": \"Non-binary\",\r\n            \"age\": 38,\r\n            \"seller\": true,\r\n            \"phone\": \"5402560932\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/auth/register/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfully created a seller",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"the_username\",\r\n    \"password\": \"perrito21\",\r\n    \"password2\": \"perrito21\",\r\n    \"email\": \"the_username@email.com\",\r\n    \"first_name\": \"Juan\",\r\n    \"last_name\": \"Aramburo\",\r\n    \"profile\": {\r\n        \"age\": 25,\r\n        \"gender\": \"Male\",\r\n        \"phone\": \"4611243345\",\r\n        \"seller\": true\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/register/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"register",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 04:16:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "174"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"the_username\",\n    \"email\": \"the_username@email.com\",\n    \"first_name\": \"Juan\",\n    \"last_name\": \"Aramburo\",\n    \"profile\": {\n        \"age\": 25,\n        \"gender\": \"Male\",\n        \"phone\": \"4611243345\",\n        \"seller\": true\n    }\n}"
+						},
+						{
+							"name": "Register Customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"the_customer\",\r\n    \"password\": \"perrito21\",\r\n    \"password2\": \"perrito21\",\r\n    \"email\": \"customer_mail@email.com\",\r\n    \"first_name\": \"Juana\",\r\n    \"last_name\": \"Customer\",\r\n    \"profile\": {\r\n        \"age\": 35,\r\n        \"gender\": \"Female\",\r\n        \"phone\": \"4611242345\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/register/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"register",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 04:28:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"the_customer\",\n    \"email\": \"customer_mail@email.com\",\n    \"first_name\": \"Juana\",\n    \"last_name\": \"Customer\",\n    \"profile\": {\n        \"age\": 35,\n        \"gender\": \"Female\",\n        \"phone\": \"4611242345\",\n        \"seller\": false\n    }\n}"
+						},
+						{
+							"name": "Wrong data fails creation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"failed_user\",\r\n    \"password\": \"perrito21\",\r\n    \"password2\": \"perrito21\",\r\n    \"email\": \"wrong_data.com\",\r\n    \"first_name\": \"Juana\",\r\n    \"last_name\": \"Fails\",\r\n    \"profile\": {\r\n        \"age\": 35,\r\n        \"gender\": \"female\",\r\n        \"phone\": \"46112ww345\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/register/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"register",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 04:29:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": [\n        \"Enter a valid email address.\"\n    ],\n    \"profile\": {\n        \"phone\": [\n            \"Enter a valid value.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Authenticate user with JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"access\", pm.response.json().access);\r",
+									"pm.environment.set(\"refresh\", pm.response.json().refresh);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jaarpa\",\r\n    \"password\": \"perrito21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/auth/token/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								""
+							]
+						},
+						"description": "This API uses JWT for access. Send the username and password to this endpoint to obtain a token and a refresh token to access restringed endpoints."
+					},
+					"response": [
+						{
+							"name": "Authenticate user with JWT",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"jaarpa\",\r\n    \"password\": \"perrito21\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/token/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"token",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 04:22:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "483"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1ODIwNDU2NywiaWF0IjoxNjU4MTE4MTY3LCJqdGkiOiIxYTE3Y2JhZjc4NjQ0MGJmYjM5ZjIzZDhmYzg1MmM0YyIsInVzZXJfaWQiOjV9.wAcOvHbU_Vv12dzwU1AgOmShladfLu0g0qa86medpOk\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4MTE4NDY3LCJpYXQiOjE2NTgxMTgxNjcsImp0aSI6IjA3Mjg5ZDZmMWFkYjQzNWNhYWZhM2I0YTU0ZDlmMGJjIiwidXNlcl9pZCI6NX0.8MVck9BrzPBtxJP9mFucs-FJ9NIOnUE1E7RQh5xte1c\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh the JWT token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"access\", pm.response.json().access);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"{{refresh}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/auth/token/refresh/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "Once the access token expires you can obtain a new one from this endpoint using the refresh token."
+					},
+					"response": [
+						{
+							"name": "Refresh to obtain a new token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1ODIwNDU2NywiaWF0IjoxNjU4MTE4MTY3LCJqdGkiOiIxYTE3Y2JhZjc4NjQ0MGJmYjM5ZjIzZDhmYzg1MmM0YyIsInVzZXJfaWQiOjV9.wAcOvHbU_Vv12dzwU1AgOmShladfLu0g0qa86medpOk\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/token/refresh/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 04:25:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4MTE4NjEwLCJpYXQiOjE2NTgxMTgxNjcsImp0aSI6IjFkMzBkNWIxNGU5NzQ5M2I4NjM3NTZhNzE2YWFkZDA0IiwidXNlcl9pZCI6NX0.HW39I24kpsiI6JUog7immmRqntgRKHxFb-PUFx2EohQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Authenticate other user with JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"other_access\", pm.response.json().access);\r",
+									"pm.environment.set(\"other_refresh\", pm.response.json().refresh);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"cchardhi\",\r\n    \"password\": \"T2!223m303\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/auth/token/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This API contains an authentication app that allows to register new users along with their profile. In the profile a user can chose whether it will be a seller or a regular buyer."
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "See available products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_url}}/products/?page_size=50&page=2",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "50"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "The results are paginated, the pagination size can be changed with the page_size parameter up to a maximum of 30 entries per page. Browse tha vailable pages with the page parameter. Any unauthenticated user can see the catalog."
+					},
+					"response": []
+				},
+				{
+					"name": "Search products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_url}}/products/?search=Africa",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Africa"
+								}
+							]
+						},
+						"description": "A non authenticated user can search through the available products using the search parameter. Products are search against title and description."
+					},
+					"response": [
+						{
+							"name": "Search products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dev_url}}/products/?search=Africa",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Africa"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 19:20:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1248"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 42,\n    \"next\": \"http://localhost:8000/api/inventory/products/?page=2&search=Africa\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"name\": \"Adouri (unidentified)\",\n            \"seller\": 444,\n            \"description\": \"Crake, african black\",\n            \"price\": \"695.91\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"price\": \"657.57\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"price\": \"657.57\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"price\": \"657.57\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 444,\n            \"description\": \"Ostrich\",\n            \"price\": \"833.28\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 764,\n            \"description\": \"Shrike, crimson-breasted\",\n            \"price\": \"816.30\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 444,\n            \"description\": \"Ostrich\",\n            \"price\": \"833.28\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 764,\n            \"description\": \"Shrike, crimson-breasted\",\n            \"price\": \"816.30\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African wild cat\",\n            \"seller\": 598,\n            \"description\": \"Bulbul, black-eyed\",\n            \"price\": \"718.19\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"American alligator\",\n            \"seller\": 886,\n            \"description\": \"African polecat\",\n            \"price\": \"628.55\",\n            \"productimage_set\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "See available products authenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/products/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "If the user is authenticated and it is a Seller then it can see all the available products and the products that this user sells that are not available."
+					},
+					"response": [
+						{
+							"name": "Not available products appear",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dev_url}}/products/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 19:25:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1653"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 724,\n    \"next\": \"http://localhost:8000/api/inventory/products/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"name\": \"Admiral, indian red\",\n            \"seller\": 5,\n            \"description\": \"Australian brush turkey\",\n            \"available\": false,\n            \"price\": \"556.46\",\n            \"seller_price\": \"459.13\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"Adouri (unidentified)\",\n            \"seller\": 444,\n            \"description\": \"Crake, african black\",\n            \"available\": true,\n            \"price\": \"695.91\",\n            \"seller_price\": \"195.48\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"available\": true,\n            \"price\": \"657.57\",\n            \"seller_price\": \"361.25\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"available\": true,\n            \"price\": \"657.57\",\n            \"seller_price\": \"361.25\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African darter\",\n            \"seller\": 507,\n            \"description\": \"Gambel's quail\",\n            \"available\": true,\n            \"price\": \"657.57\",\n            \"seller_price\": \"361.25\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 764,\n            \"description\": \"Shrike, crimson-breasted\",\n            \"available\": true,\n            \"price\": \"816.30\",\n            \"seller_price\": \"198.51\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 764,\n            \"description\": \"Shrike, crimson-breasted\",\n            \"available\": true,\n            \"price\": \"816.30\",\n            \"seller_price\": \"198.51\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 444,\n            \"description\": \"Ostrich\",\n            \"available\": true,\n            \"price\": \"833.28\",\n            \"seller_price\": \"257.40\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African porcupine\",\n            \"seller\": 444,\n            \"description\": \"Ostrich\",\n            \"available\": true,\n            \"price\": \"833.28\",\n            \"seller_price\": \"257.40\",\n            \"productimage_set\": []\n        },\n        {\n            \"name\": \"African wild cat\",\n            \"seller\": 598,\n            \"description\": \"Bulbul, black-eyed\",\n            \"available\": true,\n            \"price\": \"718.19\",\n            \"seller_price\": \"153.95\",\n            \"productimage_set\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a new product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mi animal\",\r\n    \"description\": \"Un animalote\",\r\n    \"available\": true,\r\n    \"price\": \"556.46\",\r\n    \"seller_price\": \"459.13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/products/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "If the user is authenticated and it is a Seller then user can create a new product. This product will be automatically linked to this seller user."
+					},
+					"response": [
+						{
+							"name": "Created product is assigned to current user as seller",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mi animal\",\r\n    \"description\": \"Un animalote\",\r\n    \"available\": true,\r\n    \"price\": \"556.46\",\r\n    \"seller_price\": \"459.13\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 18:27:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "140"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Mi animal\",\n    \"seller\": 5,\n    \"description\": \"Un animalote\",\n    \"available\": true,\n    \"price\": \"556.46\",\n    \"seller_price\": \"459.13\",\n    \"productimage_set\": []\n}"
+						},
+						{
+							"name": "Unauthenticated users cannot create products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mi animal\",\r\n    \"description\": \"Un animalote\",\r\n    \"available\": true,\r\n    \"price\": \"556.46\",\r\n    \"seller_price\": \"459.13\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 18:32:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer realm=\"api\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Authentication credentials were not provided.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stock\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/products/55/add_stock/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								"55",
+								"add_stock",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "If the user is authenticated and it is a Seller then user can create a new product. This product will be automatically linked to this seller user."
+					},
+					"response": [
+						{
+							"name": "The seller can add stock to the owned products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"stock\": \"10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/1208/add_stock/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"1208",
+										"add_stock",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 19 Jul 2022 20:40:24 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1208,\n    \"name\": \"Mi animal\",\n    \"seller\": 5,\n    \"description\": \"Un animalote\",\n    \"available\": true,\n    \"price\": \"556.46\",\n    \"seller_price\": \"459.13\",\n    \"productimage_set\": [],\n    \"stock\": \"31.00\"\n}"
+						},
+						{
+							"name": "A user cannot add stock to a product that does not own",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"stock\": \"10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/55/add_stock/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"55",
+										"add_stock",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 19 Jul 2022 20:41:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"You do not have permission to perform this action.\"\n}"
+						},
+						{
+							"name": "You cannot force negative stock",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"stock\": \"-22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/1208/add_stock/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"1208",
+										"add_stock",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 20 Jul 2022 00:09:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"21.00 + (-22) results in negative stock\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nuevo nombre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/products/55/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								"55",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "A user can partially (PATCH) or completely (UPDATE) update the product only if it is authenticated and owns the product."
+					},
+					"response": [
+						{
+							"name": "Partially update a product",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Nuevo nombre\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/1480/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"1480",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 21:03:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1480,\n    \"name\": \"Nuevo nombre\",\n    \"seller\": 5,\n    \"description\": \"Un animalote\",\n    \"available\": true,\n    \"price\": \"556.46\",\n    \"seller_price\": \"459.13\",\n    \"productimage_set\": []\n}"
+						},
+						{
+							"name": "The user can only update owned products",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Nuevo nombre\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/55/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"55",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 21:58:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"You do not have permission to perform this action.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nuevo nombre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/products/55/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								"55",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "If the user is authenticated and it is a Seller of the product in this detail, only then the user can delete the product."
+					},
+					"response": [
+						{
+							"name": "Can only delete owned products",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Nuevo nombre\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/products/55/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"products",
+										"55",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 22:01:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Add to cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/products/859/add_cart/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								"859",
+								"add_cart",
+								""
+							]
+						},
+						"description": "Authenticated users can add directly to their carts the current product from this endpoint. This is the only way to add a product for the first time."
+					},
+					"response": []
+				},
+				{
+					"name": "Other add to cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/products/666/add_cart/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"products",
+								"666",
+								"add_cart",
+								""
+							]
+						},
+						"description": "Authenticated users can add directly to their carts the current product from this endpoint. This is the only way to add a product for the first time."
+					},
+					"response": []
+				}
+			],
+			"description": "The API has an inventory management where the users registered as Sellers can add products to be sold and modify the stock. The non-Seller users can see available products, search through the catalog, and modify the pagination. The sellers can also do all what non-sellers do."
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "CartItems list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/cart/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"cart",
+								""
+							]
+						},
+						"description": "Authenticated users can list the items in the cart. Only cart items of the current user are shown."
+					},
+					"response": [
+						{
+							"name": "A user can only see the items in his/her cart",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dev_url}}/cart/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"cart",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 20 Jul 2022 00:35:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 0,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": []\n}"
+						},
+						{
+							"name": "A user can only see the items in his/her cart",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{other_access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dev_url}}/cart/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"cart",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 20 Jul 2022 00:36:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "388"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"product\": {\n                \"id\": 51,\n                \"name\": \"Yellow-bellied marmot\",\n                \"owner\": 412,\n                \"description\": \"Lizard, desert spiny\",\n                \"price\": \"852.20\",\n                \"productimage_set\": [],\n                \"stock\": \"21.00\"\n            },\n            \"quantity\": 21\n        },\n        {\n            \"id\": 2,\n            \"product\": {\n                \"id\": 1484,\n                \"name\": \"Nuevo nombre\",\n                \"owner\": 5,\n                \"description\": \"Un animalote\",\n                \"price\": \"556.46\",\n                \"productimage_set\": [],\n                \"stock\": \"9.00\"\n            },\n            \"quantity\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CartItems Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n            \"quantity\": \"10\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/cart/1/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"cart",
+								"1",
+								""
+							]
+						},
+						"description": "The user can change the quantity of each item in its cart but it can never add more items than current stock in the store neither set a negative quantity,"
+					},
+					"response": [
+						{
+							"name": "You cannot add more stock to the cart than available",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\r\n            \"quantity\": 30\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/cart/3/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"cart",
+										"3",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 20 Jul 2022 01:01:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"non_field_errors\": [\n        \"Not enough stock\"\n    ]\n}"
+						},
+						{
+							"name": "You cannot set the quantity to less or equal than 0",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{other_access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\r\n            \"quantity\": \"-1\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/cart/3/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"cart",
+										"3",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 20 Jul 2022 01:07:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"quantity\": [\n        \"Quantity must be greater than 0.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CartItems Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/cart/1/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"cart",
+								"1",
+								""
+							]
+						},
+						"description": "You can only delete items in your cart"
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/cart/pay/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"cart",
+								"pay",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This is the cart enpoint here any registered user can see the items that have added to their carts and can modify the quantity of each of the items in the cart. This endpoint does not allow to add more items to the cart than what the seller has is in stock.\n\nFrom this endpoint you can complete the purchase to create an order with the items in your cart."
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Check user orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{other_access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/orders/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"orders",
+								""
+							]
+						},
+						"description": "A user can query the items that has bought, grouped by ordjer."
+					},
+					"response": []
+				},
+				{
+					"name": "Query what the seller has sold",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/sales/?",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"sales",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						},
+						"description": "A seller can query the products that he owns that has been sold"
+					},
+					"response": []
+				}
+			],
+			"description": "In the orders API the user can obtain the items that has bought. And the seller can see the items that has sold. Authentication is required.j"
+		}
+	]
+}

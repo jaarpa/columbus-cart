@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "Fox, asian red",
-            "owner": 739,
+            "owner": 5,
             "description": "Bald eagle",
             "available": true,
             "price": "890.59",
@@ -652,7 +652,7 @@
         "pk": 55,
         "fields": {
             "name": "Langur, common",
-            "owner": 97,
+            "owner": 5,
             "description": "Siskin, yellow-rumped",
             "available": true,
             "price": "612.78",
