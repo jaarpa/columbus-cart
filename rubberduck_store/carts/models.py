@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 
 
 class CartItem(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     last_modified = models.DateTimeField(auto_now=True)
@@ -17,7 +17,7 @@ class CartItem(models.Model):
         verbose_name_plural = _("Cart items")
 
     def __str__(self):
-        return self.name
+        return f"{self.quantity} {self.product.name}"
 
     def get_absolute_url(self):
-        return reverse("cart_item", kwargs={"pk": self.pk})
+        return reverse("cart-detail", kwargs={"pk": self.pk})

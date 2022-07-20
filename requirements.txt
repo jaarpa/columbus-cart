@@ -5,3 +5,5 @@ cryptography
 djangorestframework-simplejwt[crypto]
 psycopg2
 Pillow
+pyyaml
+uritemplate

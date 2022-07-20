@@ -19,7 +19,7 @@ class ProductSellerSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
-            "seller",
+            "owner",
             "description",
             "available",
             "price",
@@ -29,7 +29,7 @@ class ProductSellerSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["available"]
         extra_kwargs = {
-            "seller": {"required": False},
+            "owner": {"required": False},
             "productimage_set": {"required": False},
         }
 
@@ -44,7 +44,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
-            "seller",
+            "owner",
             "description",
             "price",
             "productimage_set",
@@ -52,8 +52,9 @@ class ProductSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = [
             "name",
-            "seller",
+            "owner",
             "description",
             "price",
             "productimage_set",
         ]
+        read_only_fields = ["owner"]

@@ -35,6 +35,7 @@ that user.
 user wont be returned by the API.
 - [x] Only a seller can see products that he/she sells that have 0 existencies.
 - [x] The user can search for a product with string. Uses search as query_param.
+- [x] Only a seller can modify stock of owned products.
 - [ ] A seller user can also buy.
 - [ ] A regular user and a seller user can add, modify and delete products
 of his/her cart.

@@ -6,12 +6,12 @@ from rest_framework import filters
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework import generics
 
 from core.permissions import IsOwnerOrReadOnly
 from core.pagination import StandardResultsSetPagination
 from inventory.models import JournalEntry, Product
 from inventory.serializers import ProductSerializer, ProductSellerSerializer
+from carts.models import CartItem
 
 # Create your views here.
 
@@ -41,12 +41,12 @@ class ProductsViewSet(viewsets.ModelViewSet):
         products = super().get_queryset()
         if self.request.user.groups.filter(name="Sellers").exists():
             products |= Product.objects.filter(
-                seller=self.request.user, available=False
+                owner=self.request.user, available=False
             )
         return products
 
     def perform_create(self, serializer):
-        serializer.save(seller=self.request.user)
+        serializer.save(owner=self.request.user)
 
     @action(methods=["post"], detail=True)
     def add_stock(self, request, *args, **kwargs):
@@ -58,36 +58,42 @@ class ProductsViewSet(viewsets.ModelViewSet):
                 {"error": "Invalid stock change"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-
+        product_stock = product.stock
+        if product_stock + stock_change < 0:
+            return Response(
+                {
+                    "error": f"{product_stock} + ({stock_change}) results in negative stock"
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         JournalEntry.objects.create(
-            user=request.user, product=product, quantity=stock_change
+            owner=request.user, product=product, quantity=stock_change
         )
 
         return Response(self.get_serializer(product).data)
 
-    # @action(methods=['post'], detail=True)
-    # def create_materials(self, request, pk=None, *args, **kwargs):
-    #     course = self.get_object()
-    #     materials = request.data
-    # materials = request.data
-    # for material in materials:
-    #     serializer = MaterialSerializer(
-    #         data=material, context={'course': course}
-    #     )
-    #     serializer.is_valid(raise_exception=True)
-    #     m = serializer.save()
-    #     m.course = course
-    #     m.save()
-    #
-    # def _retrieve(self, instance):
-    #     serializer = self.get_serializer(instance)
-    #     return Response(serializer.data)
-
-    # @action(methods=['post'], detail=True)
-    # def like(self, request, pk=None, *args, **kwargs):
-    #     comment = self.get_object()
-    #     likes = comment.likes
-    #     comment.likes = likes + 1
-    #     comment.save()
-
-    #     return self._retrieve(comment)
+    @action(
+        methods=["post"],
+        detail=True,
+        permission_classes=[permissions.IsAuthenticated],
+    )
+    def add_cart(self, request, pk=None):
+        product = self.get_object()
+        stock = product.stock
+        if stock <= 0:
+            return Response(
+                {"error": "Product has not enough stock"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        cartitem, created = CartItem.objects.get_or_create(
+            owner=request.user, product=self.get_object()
+        )
+        if not created:
+            if cartitem.quantity + 1 > stock:
+                return Response(
+                    {"error": "Product has not enough stock"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            cartitem.quantity += 1
+            cartitem.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)

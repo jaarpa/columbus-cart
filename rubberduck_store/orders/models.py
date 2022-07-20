@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 
 class Order(models.Model):
 
-    client = models.ForeignKey(
+    owner = models.ForeignKey(
         get_user_model(), on_delete=models.SET_NULL, null=True
     )
     date_placed = models.DateTimeField(auto_now_add=True)

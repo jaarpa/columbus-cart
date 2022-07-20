@@ -16,13 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from inventory import views
+from rest_framework.schemas import get_schema_view
+from inventory import views as inventory_views
+from carts import views as carts_views
 
 router = routers.DefaultRouter()
-router.register(r"products", views.ProductsViewSet)
+router.register(r"products", inventory_views.ProductsViewSet)
+router.register(r"cart", carts_views.CartViewSet, basename="cart")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("users.urls")),
     path("api/inventory/", include(router.urls)),
+    path("api/", include(router.urls)),
+    path(
+        "openapi/",
+        get_schema_view(title="Rubber duck store API", version="1.0.0"),
+        name="openapi-schema",
+    ),
 ]
